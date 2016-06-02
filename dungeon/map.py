@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 from .creatures import Hero, Abomination
+from .pathfinding import TileGrid, AStar
 
 
 class Wall:
@@ -31,3 +32,5 @@ class Map:
                     self.objects.append(self.hero)
                 elif char.isdigit():
                     self.objects.append(Abomination(x, y, int(char)))
+        grid = TileGrid(0, 0, self.width, self.height)
+        self.astar = AStar(grid, cost=lambda o, d: int(self.tiles[d[0]][d[1]].passable))
