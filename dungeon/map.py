@@ -20,7 +20,7 @@ class Map:
         wall = Wall()
         self.width = len(lines[0]) // 2
         self.height = len(lines)
-        self.hero = None
+        self.hero_position = None
         self.tiles = [[floor for y in range(self.height)] for x in range(self.width)]
         self.objects = []
         for y, line in enumerate(lines):
@@ -28,8 +28,7 @@ class Map:
                 if char == '#':
                     self.tiles[x][y] = wall
                 elif char == '@':
-                    self.hero = Hero(x, y, 1)
-                    self.objects.append(self.hero)
+                    self.hero_position = (x, y)
                 elif char.isdigit():
                     self.objects.append(Abomination(x, y, int(char)))
         grid = TileGrid(0, 0, self.width, self.height)
